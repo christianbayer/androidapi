@@ -18,8 +18,8 @@ class CreateCapturesTable extends Migration
             $table->integer('tracker_id')->unsigned();
             $table->foreign('tracker_id')->references('id')->on('trackers');
             $table->string('location');
-            $table->timestamp('captured_at');
-            $table->timestamp('synchronized_at')->useCurrent();
+            $table->dateTime('captured_at')->nullable();
+            $table->dateTime('synchronized_at')->nullable();
         });
     }
     

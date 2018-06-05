@@ -20,8 +20,8 @@ class CreateCoordinatesTable extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->string('altitude');
-            $table->timestamp('marked_at');
-            $table->timestamp('synchronized_at')->useCurrent();;
+            $table->dateTime('marked_at')->nullable();
+            $table->dateTime('synchronized_at')->nullable();
         });
     }
     
