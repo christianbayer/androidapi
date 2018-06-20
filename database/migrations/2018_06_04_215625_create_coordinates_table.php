@@ -22,6 +22,7 @@ class CreateCoordinatesTable extends Migration
             $table->string('altitude');
             $table->dateTime('marked_at')->nullable();
             $table->dateTime('synchronized_at')->nullable();
+            $table->timestamps();
         });
     }
     

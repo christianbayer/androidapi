@@ -20,6 +20,7 @@ class CreateCapturesTable extends Migration
             $table->string('location');
             $table->dateTime('captured_at')->nullable();
             $table->dateTime('synchronized_at')->nullable();
+            $table->timestamps();
         });
     }
     
