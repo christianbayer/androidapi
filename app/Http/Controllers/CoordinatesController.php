@@ -57,4 +57,27 @@ class CoordinatesController extends Controller
         ];
         return view('lastCoordinate', compact('data'));
     }
+
+    public function trace(User $user, Tracker $tracker)
+    {
+        $coordinates = $tracker->coordinates()->orderBy('id', 'desc')->take(1000)->get();
+        $last = $tracker->coordinates->last();
+        $points = [];
+        foreach ($coordinates as $coordinate){
+            $points[] = [
+                'lat' => (float) $coordinate->latitude,
+                'lng' => (float) $coordinate->longitude,
+            ];
+        }
+        $center = [
+            'lat' => (float) $last->latitude,
+            'lng' => (float) $last->longitude,
+        ];
+
+        $data=[
+            'points'=>json_encode($points),
+            'center'=>json_encode($center)
+        ];
+        return view('trace', compact('data'));
+    }
 }
