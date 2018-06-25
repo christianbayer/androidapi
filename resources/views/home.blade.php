@@ -9,15 +9,15 @@
                     <div class="panel-body">
                         @foreach($data['trackers'] as $tracker)
                             <div class="panel panel-default">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="font-size: 14px; font-weight: 500;">
-                                <div class="panel-heading" style="background-color: #fafafa">
-                                            Tracker 1
-                                </div>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                    <div class="panel-heading" style="background-color: #fafafa">
+                                        {{ $tracker->name }}
+                                    </div>
                                 </a>
                                 <div id="collapse1" class="panel-collapse collapse in">
                                     <div class="panel-body">
-                                        <a href="{{ route('user.tracker.trace', [1,1]) }}" style="display: block;">See
-                                            trace</a>
+                                        <a href="{{ route('user.tracker.trace', [1,1]) }}"
+                                           style="display: block;">See trace</a>
                                         <a href="{{ route('user.tracker.lastCapture', [1,1]) }}"
                                            style="display: block;">See last capture</a>
                                         <a href="{{ route('user.tracker.lastCoordinate', [1,1]) }}"

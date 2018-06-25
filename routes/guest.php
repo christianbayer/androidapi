@@ -15,9 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{user}/{tracker}/last-coordinate', 'CoordinatesController@lastCoordinate')->name('user.tracker.lastCoordinate');
-Route::get('/{user}/{tracker}/trace', 'CoordinatesController@trace')->name('user.tracker.trace');
-Route::get('/{user}/{tracker}/last-capture', 'CapturesController@lastCapture')->name('user.tracker.lastCapture');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
