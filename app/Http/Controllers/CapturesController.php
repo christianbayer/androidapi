@@ -7,6 +7,7 @@ use App\Tracker;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class CapturesController extends Controller
 {
@@ -34,8 +35,8 @@ class CapturesController extends Controller
     {
         $inputs = $request->all();
         $capture = $tracker->captures()->create([
-            'location'        => $this->saveImage($request->file('image')),
-            'captured_at'     => $inputs['captured_at'],
+            'location'        => $this->saveImage($inputs['image']),
+            'captured_at'     => Carbon::now(),
             'synchronized_at' => Carbon::now(),
         ]);
         
@@ -46,9 +47,27 @@ class CapturesController extends Controller
         ];
     }
     
-    public function saveImage()
+    public function saveImage($image)
     {
-        // ... save image here
-        return '';
+        $filename= "capture-".time().".jpg";
+        $path = 'img/'.$filename;
+        $binary = base64_decode($image);
+
+        header('Content-Type: bitmap; charset=utf-8');
+
+        $file = fopen(public_path($path), "wb");
+        fwrite($file, $binary);
+        fclose($file);
+
+        return $path;
+    }
+
+    public function lastCapture(User $user, Tracker $tracker)
+    {
+        $last = $tracker->captures->last();
+        $data=[
+            'location' => $last->location,
+        ];
+        return view('lastCapture', compact('data'));
     }
 }

@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/{user}/{tracker}/last-coordinate', 'CoordinatesController@lastCoordinate')->name('user.tracker.lastCoordinate');
+Route::get('/{user}/{tracker}/last-capture', 'CapturesController@lastCapture')->name('user.tracker.lastCapture');

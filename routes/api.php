@@ -20,7 +20,7 @@ Route::get('/{user}/trackers/show', 'TrackersController@show')->name('user.track
 Route::get('/{user}/trackers/store', 'TrackersController@store')->name('user.trackers.store');
 
 Route::get('/{user}/{tracker}/coordinates/show', 'CoordinatesController@show')->name('user.tracker.coordinates.show');
-Route::post('/{user}/{tracker}/coordinate/store', 'CoordinatesController@store')->name('user.tracker.coordinates.store');
+Route::post('/{user}/{tracker}/coordinates/store', 'CoordinatesController@store')->name('user.tracker.coordinates.store');
 
 Route::get('/{user}/{tracker}/captures/show', 'CapturesController@show')->name('user.tracker.captures.show');
 Route::post('/{user}/{tracker}/captures/store', 'CapturesController@store')->name('user.tracker.captures.store');

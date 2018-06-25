@@ -37,7 +37,7 @@ class CoordinatesController extends Controller
             'latitude'        => $inputs['latitude'],
             'longitude'       => $inputs['longitude'],
             'altitude'        => $inputs['altitude'],
-            'marked_at'       => $inputs['marked_at'],
+            'marked_at'       => Carbon::now(),
             'synchronized_at' => Carbon::now(),
         ]);
         
@@ -46,5 +46,15 @@ class CoordinatesController extends Controller
             'message' => 'Coordinate saved.',
             'data'    => $coordinate,
         ];
+    }
+
+    public function lastCoordinate(User $user, Tracker $tracker)
+    {
+        $last = $tracker->coordinates->last();
+        $data=[
+            'latitude' => $last->latitude,
+            'longitude' => $last->longitude,
+        ];
+        return view('lastCoordinate', compact('data'));
     }
 }
